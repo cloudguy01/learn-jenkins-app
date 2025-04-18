@@ -24,3 +24,7 @@ yarn-error.log*
 /test-results/
 /playwright-report/
 /playwright/.cache/
+
+#docker stuff
+compose.yml
+.dockerignore
