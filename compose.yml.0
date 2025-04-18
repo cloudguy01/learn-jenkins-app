@@ -1,0 +1,18 @@
+networks:
+  jenkinsnet:
+    driver: bridge
+
+services:
+  jenkins:
+    container_name: "jenkins-master"
+    image: "jenkins/jenkins:latest"
+    networks:
+      - jenkinsnet
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins-volume:/var/jenkins-home:rw
+
+volumes:
+  jenkins-volume:
