@@ -22,12 +22,13 @@ pipeline {
                                 ls -la
                             '''
                         }
-                    }
-                    post{
+                        post{
                         always{
                             cleanWs()
                         }
                     }
+                    }
+                    
 
                  stage ('task parll 2'){
                 steps{
