@@ -2,9 +2,10 @@ pipeline {
     agent any
 
     stages {
-        parallel{
+        stage('nested stages'){
 
-            stage('Build') {
+            parallel{
+                stage('Build') {
                         agent{
                             docker{
                                 image 'node:18-alpine'
@@ -27,22 +28,21 @@ pipeline {
                             cleanWs()
                         }
                     }
-                }
-                    
 
-            stage ('task parll 2'){
+                 stage ('task parll 2'){
                 steps{
                     sh 'echo parallel2'
+                    }        
                 }
-                
-            }
 
-            stage('task parll 3'){
-                steps{
-                    sh 'echo parallel3'
+                stage('task parll 3'){
+                    steps{
+                        sh 'echo parallel3'
+                    }    
                 }
-                
-            }
-        
-    }
+
+            }         
+        }
+    } 
 }
+
