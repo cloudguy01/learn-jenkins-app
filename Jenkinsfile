@@ -31,11 +31,17 @@ pipeline {
                     
 
             stage ('task parll 2'){
-                sh 'echo parallel2'
+                steps{
+                    sh 'echo parallel2'
+                }
+                
             }
 
             stage('task parll 3'){
-                sh 'echo parallel3'
+                steps{
+                    sh 'echo parallel3'
+                }
+                
             }
         
     }
