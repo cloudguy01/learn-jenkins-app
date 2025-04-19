@@ -26,11 +26,11 @@ pipeline {
                                 node_modules/.bin/netlify deploy --dir=build --prod
 
                             '''
-                        }
+                        }/*
                         post{
                         always{
                             cleanWs()
-                        }
+                        }*/
                     }
                 }
             }         
