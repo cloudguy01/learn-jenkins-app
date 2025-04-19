@@ -30,8 +30,8 @@ pipeline {
                         post{
                         always{
                             cleanWs()
-                        }*/
-                    }
+                        }
+                    }*/
                 }
             }         
         }
