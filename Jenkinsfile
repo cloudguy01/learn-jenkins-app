@@ -5,7 +5,7 @@ pipeline {
         stage('nested stages'){
 
             parallel{
-                stage('Build') {
+                stage('Deploy') {
                         agent{
                             docker{
                                 image 'node:18-alpine'
@@ -14,12 +14,9 @@ pipeline {
                         }
                         steps {
                             sh '''
-                                ls -la
-                                node --version
-                                npm --version
-                                npm ci
-                                npm run build
-                                ls -la
+                                npm install netlify-cli -g
+                                netlify --version
+                                
                             '''
                         }
                         post{
@@ -27,21 +24,7 @@ pipeline {
                             cleanWs()
                         }
                     }
-                    }
-                    
-
-                 stage ('task parll 2'){
-                steps{
-                    sh 'echo parallel2'
-                    }        
                 }
-
-                stage('task parll 3'){
-                    steps{
-                        sh 'echo parallel3'
-                    }    
-                }
-
             }         
         }
     } 
