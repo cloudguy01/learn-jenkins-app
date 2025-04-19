@@ -26,7 +26,6 @@ pipeline {
             }
 
         }
-    }
         stage('nested stages'){
 
             parallel{
