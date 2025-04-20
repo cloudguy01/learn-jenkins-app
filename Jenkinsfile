@@ -10,12 +10,15 @@ pipeline {
             }
         }
         steps {
-            cleanWs()
             sh '''
                 aws --version    
             '''
         }
-       
+       post{
+        always{
+            cleanWs()
+        }
+       }
       }
     }
 }         
