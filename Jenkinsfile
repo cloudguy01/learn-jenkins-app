@@ -5,7 +5,7 @@ pipeline {
       stage ('Spinup AWS CLI container'){
         agent{
             docker{
-                image 'public.ecr.aws/aws-cli/aws-cli:latest'
+                image 'amazon/aws-cli'
                 args "entrypoint=''"
             }
         }
