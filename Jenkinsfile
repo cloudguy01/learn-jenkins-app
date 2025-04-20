@@ -11,11 +11,13 @@ pipeline {
     stages {
         stage('Prepare build enviornment'){
             steps{
+                sh '''
                     npm install netlify-cli
                     node_modules/.bin/netlify --version
                     node --version
                     npm --version
                     npm ci
+                '''
             }
         }
         stage('Build'){
