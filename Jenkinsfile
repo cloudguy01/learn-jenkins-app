@@ -27,14 +27,13 @@ pipeline {
             }
 
         }
-        stage('nested stages'){
+        stage('Deployments'){
 
             parallel{
                 stage('Deploy Staging') {
                         agent{
                             docker{
                                 image 'node:18-alpine'
-                                reuseNode true
                             }
                         }
                         steps {
@@ -48,17 +47,11 @@ pipeline {
 
                             '''
                         }
-                        post{
-                        always{
-                            cleanWs()
-                        }
-                    }
                 }
                 stage('Deploy Prod') {
                         agent{
                             docker{
                                 image 'node:18-alpine'
-                                reuseNode true
                             }
                         }
                         steps {
@@ -72,14 +65,10 @@ pipeline {
 
                             '''
                         }
-                        post{
-                        always{
-                            cleanWs()
-                        }
                     }
                 }
             }         
         }
     } 
-}
+
 
