@@ -18,13 +18,14 @@ pipeline {
                 }
             }
             steps{
+                cleanWs()
                 sh '''
-                    ls -la
+                    npm install netlify-cli
+                    node_modules/.bin/netlify --version
                     node --version
                     npm --version
                     npm ci
                     npm run build
-                    ls -la
                 '''
             }
 
@@ -42,9 +43,6 @@ pipeline {
                         }
                         steps {
                             sh '''
-                                echo "Small change"
-                                npm install netlify-cli
-                                node_modules/.bin/netlify --version
                                 echo "Deploying to staging Site ID: $NETLIFY_SITE_ID"
                                 node_modules/.bin/netlify status
                                 node_modules/.bin/netlify deploy --dir=build
@@ -62,9 +60,6 @@ pipeline {
                         }
                         steps {
                             sh '''
-                                echo "Small change"
-                                npm install netlify-cli
-                                node_modules/.bin/netlify --version
                                 echo "Deploying to production Site ID: $NETLIFY_SITE_ID"
                                 node_modules/.bin/netlify status
                                 node_modules/.bin/netlify deploy --dir=build --prod
