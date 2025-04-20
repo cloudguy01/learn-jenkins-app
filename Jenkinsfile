@@ -30,10 +30,12 @@ pipeline {
         stage('Deployments'){
 
             parallel{
+
                 stage('Deploy Staging') {
                         agent{
                             docker{
                                 image 'node:18-alpine'
+                                reuseNode true
                             }
                         }
                         steps {
@@ -52,6 +54,7 @@ pipeline {
                         agent{
                             docker{
                                 image 'node:18-alpine'
+                                reuseNode true
                             }
                         }
                         steps {
