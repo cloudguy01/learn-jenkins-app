@@ -4,6 +4,7 @@ pipeline {
     environment{
         NETLIFY_SITE_ID='f6326460-6e70-428f-8e68-21644fb59d12'
         NETLIFY_AUTH_TOKEN=credentials('netlify-token')
+        npm_config_loglevel=silent
     }
 
     stages {
@@ -46,12 +47,12 @@ pipeline {
                                 node_modules/.bin/netlify deploy --dir=build
 
                             '''
-                        }/*
+                        }
                         post{
                         always{
                             cleanWs()
                         }
-                    }*/
+                    }
                 }
                 stage('Deploy Prod') {
                         agent{
@@ -70,12 +71,12 @@ pipeline {
                                 node_modules/.bin/netlify deploy --dir=build --prod
 
                             '''
-                        }/*
+                        }
                         post{
                         always{
                             cleanWs()
                         }
-                    }*/
+                    }
                 }
             }         
         }
