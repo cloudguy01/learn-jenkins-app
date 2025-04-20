@@ -9,14 +9,18 @@ pipeline {
     }
 
     stages {
-        stage('Prepare build enviornment'){
+        stage('Prepare build environment'){
+            agent{
+                docker{
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
             steps{
                 sh '''
+                    npm ci
                     npm install netlify-cli
                     node_modules/.bin/netlify --version
-                    node --version
-                    npm --version
-                    npm ci
                 '''
             }
         }
