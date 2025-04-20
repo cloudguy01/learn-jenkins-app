@@ -9,6 +9,15 @@ pipeline {
     }
 
     stages {
+        stage('Prepare build enviornment'){
+            steps{
+                    npm install netlify-cli
+                    node_modules/.bin/netlify --version
+                    node --version
+                    npm --version
+                    npm ci
+            }
+        }
         stage('Build'){
             agent {
                 docker{
@@ -17,13 +26,7 @@ pipeline {
                 }
             }
             steps{
-                cleanWs()
                 sh '''
-                    npm install netlify-cli
-                    node_modules/.bin/netlify --version
-                    node --version
-                    npm --version
-                    npm ci
                     npm run build
                 '''
             }
