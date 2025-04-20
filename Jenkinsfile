@@ -2,10 +2,17 @@ pipeline {
     agent any
 
     stages {
-      stage ('Build Docker image'){
+      stage ('Spinup AWS CLI container'){
+        agent{
+            docker{
+                image 'public.ecr.aws/aws-cli/aws-cli:latest'
+                args "entrypoint=''"
+            }
+        }
         steps {
+            cleanWs()
             sh '''
-                docker build -t my-playwright .     
+                aws --version    
             '''
         }
        
